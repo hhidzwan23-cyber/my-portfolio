@@ -6,7 +6,7 @@ function TodoList() {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    fetch('https://my-portfolio-green-nine-34.vercel.app/', {
+    fetch('https://my-backend-c00k.onrender.com/tasks', {
       headers: { Authorization: token }
     })
       .then((res) => res.json())
@@ -15,7 +15,7 @@ function TodoList() {
 
   function addTask() {
     if (input === '') return;
-    fetch('https://my-portfolio-green-nine-34.vercel.app/', {
+    fetch('https://my-backend-c00k.onrender.com/tasks', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ function TodoList() {
   }
 
   function deleteTask(taskId) {
-    fetch(`https://my-portfolio-green-nine-34.vercel.app/${taskId}`, {
+    fetch(`https://my-backend-c00k.onrender.com/tasks/${taskId}`, {
       method: 'DELETE',
       headers: { Authorization: token }
     })
