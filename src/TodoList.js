@@ -3,18 +3,24 @@ import { useState, useEffect } from 'react';
 function TodoList() {
   const [tasks, setTasks] = useState([]);
   const [input, setInput] = useState('');
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
-    fetch('https://my-backend-c00k.onrender.com/tasks')
+    fetch('http://localhost:3001/tasks', {
+      headers: { Authorization: token }
+    })
       .then((res) => res.json())
       .then((data) => setTasks(data));
-  }, []);
-
+  }, [token]);
+  
   function addTask() {
     if (input === '') return;
-    fetch('https://my-backend-c00k.onrender.com/tasks', {
+    fetch('http://localhost:3001/tasks', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: token
+      },
       body: JSON.stringify({ task: input })
     })
       .then((res) => res.json())
@@ -25,14 +31,15 @@ function TodoList() {
   }
 
   function deleteTask(taskId) {
-    fetch(`https://my-backend-c00k.onrender.com/tasks/${taskId}`, {
-      method: 'DELETE'
+    fetch(`http://localhost:3001/tasks/${taskId}`, {
+      method: 'DELETE',
+      headers: { Authorization: token }
     })
       .then((res) => res.json())
       .then(() => {
         setTasks(tasks.filter((task) => task._id !== taskId));
-    });
-}
+      });
+  }
 
   return (
     <div style={{ maxWidth: '500px', margin: '40px auto' }}>
