@@ -6,16 +6,16 @@ function TodoList() {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    fetch('http://localhost:3001/tasks', {
+    fetch('https://my-portfolio-green-nine-34.vercel.app/', {
       headers: { Authorization: token }
     })
       .then((res) => res.json())
       .then((data) => setTasks(data));
   }, [token]);
-  
+
   function addTask() {
     if (input === '') return;
-    fetch('http://localhost:3001/tasks', {
+    fetch('https://my-portfolio-green-nine-34.vercel.app/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ function TodoList() {
   }
 
   function deleteTask(taskId) {
-    fetch(`http://localhost:3001/tasks/${taskId}`, {
+    fetch(`https://my-portfolio-green-nine-34.vercel.app/${taskId}`, {
       method: 'DELETE',
       headers: { Authorization: token }
     })
