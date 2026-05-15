@@ -6,7 +6,7 @@ function Register({ onSwitch }) {
   const [message, setMessage] = useState('');
 
   function handleRegister() {
-    fetch('https://my-portfolio-green-nine-34.vercel.app/register', {
+    fetch('https://my-backend-c00k.onrender.com/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })

@@ -6,7 +6,7 @@ function Login({ onLogin, onSwitch }) {
   const [message, setMessage] = useState('');
 
   function handleLogin() {
-  fetch('https://my-portfolio-green-nine-34.vercel.app/login', {
+  fetch('https://my-backend-c00k.onrender.com/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password })
