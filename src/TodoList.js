@@ -5,14 +5,14 @@ function TodoList() {
   const [input, setInput] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3001/tasks')
+    fetch('https://my-backend-c00k.onrender.com/tasks')
       .then((res) => res.json())
       .then((data) => setTasks(data));
   }, []);
 
   function addTask() {
     if (input === '') return;
-    fetch('http://localhost:3001/tasks', {
+    fetch('https://my-backend-c00k.onrender.com/tasks', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ task: input })
@@ -25,12 +25,12 @@ function TodoList() {
   }
 
   function deleteTask(taskId) {
-  fetch(`http://localhost:3001/tasks/${taskId}`, {
-    method: 'DELETE'
-  })
-    .then((res) => res.json())
-    .then(() => {
-      setTasks(tasks.filter((task) => task._id !== taskId));
+    fetch(`https://my-backend-c00k.onrender.com/tasks/${taskId}`, {
+      method: 'DELETE'
+    })
+      .then((res) => res.json())
+      .then(() => {
+        setTasks(tasks.filter((task) => task._id !== taskId));
     });
 }
 
